@@ -1,0 +1,2381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony's Pickle — Authentic Pickles, Made With Love ❤️</title>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/css/playfair-display@latest/latin.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/css/poppins@latest/latin.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #D4A017;
+            --primary-dark: #B8860B;
+            --secondary: #E8751A;
+            --accent: #C0392B;
+            --cream: #FFF8E7;
+            --cream-dark: #F5E6C8;
+            --dark: #2C1810;
+            --text: #3D2914;
+            --text-light: #6B4E37;
+            --white: #FFFFFF;
+            --shadow: 0 10px 40px rgba(44, 24, 16, 0.1);
+            --shadow-hover: 0 20px 60px rgba(44, 24, 16, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+            animation: pulse 1.5s infinite;
+        }
+
+        .preloader-content span {
+            font-size: 4rem;
+        }
+
+        .preloader-content p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-top: 1rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 248, 231, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(44, 24, 16, 0.08);
+            padding: 0.7rem 2rem;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(212, 160, 23, 0.3);
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(10deg) scale(1.05);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text small {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--primary-dark);
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 160, 23, 0.3);
+        }
+
+        .cart-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(212, 160, 23, 0.4);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .cart-count.bump {
+            animation: cartBump 0.3s ease;
+        }
+
+        @keyframes cartBump {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+            100% { transform: scale(1); }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(212, 160, 23, 0.08) 0%, transparent 70%);
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, 3%) rotate(5deg); }
+        }
+
+        .hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(212, 160, 23, 0.1);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 8px 25px rgba(212, 160, 23, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 160, 23, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--dark);
+            border: 2px solid var(--cream-dark);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInRight 1s ease 0.4s both;
+        }
+
+        .hero-jar {
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(212, 160, 23, 0.25);
+            animation: float 6s ease-in-out infinite;
+            overflow: hidden;
+        }
+
+        .hero-jar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .hero-jar::before {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            border: 2px dashed rgba(212, 160, 23, 0.3);
+            animation: spin 20s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: floatItem 4s ease-in-out infinite;
+        }
+
+        .float-item:nth-child(1) { top: 10%; left: 0; animation-delay: 0s; }
+        .float-item:nth-child(2) { top: 60%; left: -10%; animation-delay: 1s; }
+        .float-item:nth-child(3) { top: 20%; right: 0; animation-delay: 2s; }
+        .float-item:nth-child(4) { bottom: 10%; right: 10%; animation-delay: 0.5s; }
+        .float-item:nth-child(5) { bottom: 30%; left: 5%; animation-delay: 1.5s; }
+
+        @keyframes floatItem {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--white);
+            padding: 2rem;
+            border-top: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .trust-bar-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .trust-item span {
+            font-size: 1.3rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Section */
+        .products-section {
+            background: var(--white);
+        }
+
+        .products-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--cream);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(212, 160, 23, 0.2);
+        }
+
+        .product-image {
+            height: 260px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        .product-weight {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            background: var(--white);
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .product-price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-light);
+            text-decoration: line-through;
+            margin-left: 0.3rem;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 160, 23, 0.3);
+        }
+
+        .add-to-cart:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(212, 160, 23, 0.4);
+        }
+
+        /* Why Choose Us */
+        .why-section {
+            background: linear-gradient(135deg, var(--dark) 0%, #4A2C1A 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A017' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .why-section .section-label {
+            color: var(--primary);
+        }
+
+        .why-section .section-title {
+            color: var(--white);
+        }
+
+        .why-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .why-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .why-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: rgba(212, 160, 23, 0.3);
+        }
+
+        .why-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .why-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .why-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Brand Story */
+        .story-section {
+            background: var(--cream);
+        }
+
+        .story-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-visual {
+            position: relative;
+        }
+
+        .story-image-main {
+            width: 100%;
+            height: 500px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .story-image-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-image-main::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 60%, rgba(212, 160, 23, 0.15));
+        }
+
+        .story-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(212, 160, 23, 0.3);
+            animation: float 4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .story-badge span:first-child {
+            font-size: 2rem;
+        }
+
+        .story-badge span:last-child {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .story-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .story-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .story-feature span:first-child {
+            width: 35px;
+            height: 35px;
+            background: rgba(212, 160, 23, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Reviews */
+        .reviews-section {
+            background: var(--white);
+        }
+
+        .reviews-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--cream);
+            border-radius: 20px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: rgba(212, 160, 23, 0.2);
+        }
+
+        .review-quote {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            opacity: 0.2;
+        }
+
+        .review-stars {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .review-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .review-author-info h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .review-author-info p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        /* Delivery Section */
+        .delivery-section {
+            background: linear-gradient(135deg, #FFF3D4, var(--cream));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .delivery-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .delivery-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            animation: truckMove 3s ease-in-out infinite;
+        }
+
+        @keyframes truckMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .delivery-features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .delivery-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .delivery-feature span {
+            font-size: 1.3rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid var(--cream-dark);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(212, 160, 23, 0.3);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            text-align: left;
+            gap: 1rem;
+        }
+
+        .faq-question span {
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .faq-item.active .faq-question span {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        /* Instagram Section */
+        .instagram-section {
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .instagram-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .insta-item {
+            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .insta-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .insta-item::after {
+            content: '📸';
+            position: absolute;
+            inset: 0;
+            background: rgba(44, 24, 16, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .insta-item:hover::after {
+            opacity: 1;
+        }
+
+        .insta-item:hover {
+            transform: scale(1.05);
+        }
+
+        .insta-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .insta-cta {
+            margin-top: 2.5rem;
+        }
+
+        .insta-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(131, 58, 180, 0.3);
+        }
+
+        .insta-cta a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(131, 58, 180, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-col h4 {
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes whatsappPulse {
+            0% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4), 0 0 0 15px rgba(37, 211, 102, 0.1); }
+            100% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
+        }
+
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 24, 16, 0.5);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 400px;
+            max-width: 90vw;
+            height: 100%;
+            background: var(--white);
+            z-index: 9999;
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 40px rgba(44, 24, 16, 0.1);
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--cream-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .cart-close:hover {
+            color: var(--accent);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cart-item-info p {
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-item-qty button {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--cream-dark);
+            background: var(--cream);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .cart-item-qty button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .cart-item-qty span {
+            font-weight: 600;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-light);
+        }
+
+        .cart-empty span {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--cream-dark);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .cart-checkout {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cart-checkout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 160, 23, 0.3);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            background: var(--dark);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            z-index: 10000;
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 10px 30px rgba(44, 24, 16, 0.3);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            border: 1px solid var(--cream-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 350px;
+            height: 100%;
+            background: var(--white);
+            z-index: 10001;
+            transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-nav.active {
+            left: 0;
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 24, 16, 0.5);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--cream-dark);
+            transition: color 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-jar {
+                width: 320px;
+                height: 320px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .story-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .trust-bar-inner {
+                gap: 1rem;
+            }
+
+            .trust-item {
+                font-size: 0.8rem;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .story-features {
+                grid-template-columns: 1fr;
+            }
+
+            .delivery-features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .story-image-main {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-jar {
+                width: 250px;
+                height: 250px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+    <div class="preloader-content">
+        <span>🫙</span>
+        <p>Sony's Pickle</p>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="header-inner">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <img src="https://assets.vogue.in/photos/5edddd0754c8cbd19bec6e0b/1:1/w_3682,h_3682,c_limit/Pickle%20recipes.jpg" alt="Logo">
+            </div>
+            <div class="logo-text">
+                Sony's Pickle
+                <small>Made With Love ❤️</small>
+            </div>
+        </a>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#story">Our Story</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="cart-btn" id="cartBtn" aria-label="Shopping Cart">
+                🛒
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+<nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#story">Our Story</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge">
+                🏆 Trusted by 2000+ Happy Customers
+            </div>
+            <h1 class="hero-title">
+                Authentic Pickles,<br>
+                <span class="highlight">Made With Love</span> ❤️
+            </h1>
+            <p class="hero-subtitle">
+                Traditional homemade taste, carefully prepared with the finest ingredients and delivered fresh to your doorstep across India.
+            </p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">
+                    🛍️ Shop Now
+                </a>
+                <a href="https://wa.me/919999999999?text=Hi%20Sony's%20Pickle%2C%20I%20want%20to%20place%20an%20order" class="btn btn-secondary" target="_blank">
+                    💬 Order on WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-elements">
+                <span class="float-item">🌶️</span>
+                <span class="float-item">🍋</span>
+                <span class="float-item">🧄</span>
+                <span class="float-item">🌿</span>
+                <span class="float-item">✨</span>
+            </div>
+            <div class="hero-jar">
+                <img src="https://assets.vogue.in/photos/5edddd0754c8cbd19bec6e0b/1:1/w_3682,h_3682,c_limit/Pickle%20recipes.jpg" alt="Authentic Pickle Jar">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar">
+    <div class="trust-bar-inner">
+        <div class="trust-item"><span>❤️</span> Made With Love</div>
+        <div class="trust-item"><span>🥘</span> Authentic Taste</div>
+        <div class="trust-item"><span>✓</span> No Chemical Preservatives</div>
+        <div class="trust-item"><span>☪</span> 100% Halal Meat</div>
+        <div class="trust-item"><span>🚚</span> All-India Delivery</div>
+    </div>
+</div>
+
+<!-- Products -->
+<section class="section products-section" id="products">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Our Products</span>
+        <h2 class="section-title">Best Sellers 🏆</h2>
+        <p class="section-subtitle">Handcrafted with traditional recipes passed down through generations</p>
+    </div>
+    <div class="products-grid">
+        <div class="product-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="product-image">
+                <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Chicken Pickle">
+                <span class="product-badge">Bestseller</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Chicken Pickle</h3>
+                <p class="product-desc">Tender chicken pieces marinated in aromatic spices and mustard oil</p>
+                <div class="product-meta">
+                    <span class="product-rating">⭐⭐⭐⭐⭐ (48)</span>
+                    <span class="product-weight">500g</span>
+                </div>
+                <div class="product-bottom">
+                    <div class="product-price">₹399 <small>₹499</small></div>
+                    <button class="add-to-cart" onclick="addToCart('Chicken Pickle', 399, 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=100')" aria-label="Add to Cart">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="product-image">
+                <img src="https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mutton Pickle">
+                <span class="product-badge">Popular</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Mutton Pickle</h3>
+                <p class="product-desc">Premium mutton pieces slow-cooked in traditional spice blend</p>
+                <div class="product-meta">
+                    <span class="product-rating">⭐⭐⭐⭐⭐ (35)</span>
+                    <span class="product-weight">500g</span>
+                </div>
+                <div class="product-bottom">
+                    <div class="product-price">₹549 <small>₹649</small></div>
+                    <button class="add-to-cart" onclick="addToCart('Mutton Pickle', 549, 'https://images.pexels.com/photos/1435895/pexels-photo-1435895.jpeg?auto=compress&cs=tinysrgb&w=100')" aria-label="Add to Cart">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="product-image">
+                <img src="https://images.pexels.com/photos/315754/pexels-photo-315754.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Prawn Pickle">
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Prawn Pickle</h3>
+                <p class="product-desc">Fresh prawns in a tangy coastal spice mixture with curry leaves</p>
+                <div class="product-meta">
+                    <span class="product-rating">⭐⭐⭐⭐⭐ (27)</span>
+                    <span class="product-weight">400g</span>
+                </div>
+                <div class="product-bottom">
+                    <div class="product-price">₹499 <small>₹599</small></div>
+                    <button class="add-to-cart" onclick="addToCart('Prawn Pickle', 499, 'https://images.pexels.com/photos/315754/pexels-photo-315754.jpeg?auto=compress&cs=tinysrgb&w=100')" aria-label="Add to Cart">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="product-image">
+                <img src="https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mixed Veg Pickle">
+                <span class="product-badge">New</span>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name">Mixed Veg Pickle</h3>
+                <p class="product-desc">Classic mango, lime & chili mix with authentic mustard oil base</p>
+                <div class="product-meta">
+                    <span class="product-rating">⭐⭐⭐⭐⭐ (52)</span>
+                    <span class="product-weight">500g</span>
+                </div>
+                <div class="product-bottom">
+                    <div class="product-price">₹249 <small>₹299</small></div>
+                    <button class="add-to-cart" onclick="addToCart('Mixed Veg Pickle', 249, 'https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&w=100')" aria-label="Add to Cart">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="section why-section">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">Why Sony's Pickle?</h2>
+        <p class="section-subtitle">Every jar carries our promise of quality, taste, and trust</p>
+    </div>
+    <div class="why-grid">
+        <div class="why-card" data-aos="fade-up" data-aos-delay="0">
+            <span class="why-icon">☪</span>
+            <h3>100% Halal</h3>
+            <p>All our meat products use certified halal ingredients, ensuring trust for our customers.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+            <span class="why-icon">🌿</span>
+            <h3>No Chemicals</h3>
+            <p>Zero chemical preservatives added. We use only natural ingredients and traditional methods.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+            <span class="why-icon">🏠</span>
+            <h3>No Refrigeration</h3>
+            <p>Our pickles stay fresh at room temperature, making them perfect for storage and shipping.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="300">
+            <span class="why-icon">🚚</span>
+            <h3>Pan-India Delivery</h3>
+            <p>We deliver authentic taste to your doorstep, no matter where you are in India.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Brand Story -->
+<section class="section story-section" id="story">
+    <div class="story-inner">
+        <div class="story-visual" data-aos="fade-right">
+            <div class="story-image-main">
+                <img src="https://nandhini.com/wp-content/uploads/2026/05/Andhra-Pickles-Decoded-Avakaya-Gongura-and-the-Pickles-That-Define-an-Andhra-Meal.webp" alt="Making pickles with love">
+            </div>
+            <div class="story-badge">
+                <span>❤️</span>
+                <span>Made with<br>Love</span>
+            </div>
+        </div>
+        <div class="story-content" data-aos="fade-left">
+            <span class="section-label">Our Story</span>
+            <h2>A Legacy of Taste, Made by Hand</h2>
+            <p>
+                Sony's Pickle was born from a simple belief — that the best food comes from the heart. What started as a family kitchen experiment has grown into a brand trusted by thousands across India.
+            </p>
+            <p>
+                Every jar is handcrafted using time-honored recipes, the freshest ingredients, and a whole lot of love. No shortcuts, no chemicals — just pure, authentic taste that reminds you of home.
+            </p>
+            <div class="story-features">
+                <div class="story-feature">
+                    <span>👩‍🍳</span>
+                    <span>Handcrafted</span>
+                </div>
+                <div class="story-feature">
+                    <span>🌶️</span>
+                    <span>Fresh Spices</span>
+                </div>
+                <div class="story-feature">
+                    <span>📜</span>
+                    <span>Traditional Recipe</span>
+                </div>
+                <div class="story-feature">
+                    <span>💛</span>
+                    <span>Made with Love</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Reviews -->
+<section class="section reviews-section" id="reviews">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">What Our Customers Say 🥰</h2>
+        <p class="section-subtitle">Real reviews from our happy pickle-loving family</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card" data-aos="fade-up" data-aos-delay="0">
+            <span class="review-quote">❝</span>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p class="review-text">"The chicken pickle is absolutely amazing! Tastes just like my grandmother used to make. The spices are perfectly balanced and it goes so well with rice."</p>
+            <div class="review-author">
+                <div class="review-avatar">F</div>
+                <div class="review-author-info">
+                    <h4>Fatima S.</h4>
+                    <p>Hyderabad</p>
+                </div>
+            </div>
+        </div>
+        <div class="review-card" data-aos="fade-up" data-aos-delay="100">
+            <span class="review-quote">❝</span>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p class="review-text">"Ordered the mutton pickle and it was delivered within 4 days to Mumbai. The quality is outstanding and the taste is so authentic. Will order again!"</p>
+            <div class="review-author">
+                <div class="review-avatar">R</div>
+                <div class="review-author-info">
+                    <h4>Rahul M.</h4>
+                    <p>Mumbai</p>
+                </div>
+            </div>
+        </div>
+        <div class="review-card" data-aos="fade-up" data-aos-delay="200">
+            <span class="review-quote">❝</span>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p class="review-text">"Love that there are no chemical preservatives! The prawn pickle is my new favorite. You can really taste the freshness. Highly recommended!"</p>
+            <div class="review-author">
+                <div class="review-avatar">A</div>
+                <div class="review-author-info">
+                    <h4>Aisha K.</h4>
+                    <p>Bangalore</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Delivery -->
+<section class="section delivery-section">
+    <div class="delivery-inner" data-aos="fade-up">
+        <span class="delivery-icon">🚚</span>
+        <span class="section-label">Shipping</span>
+        <h2 class="section-title">We Deliver Across India 🇮🇳</h2>
+        <p class="section-subtitle">From our kitchen to your doorstep — fresh, safe, and fast</p>
+        <div class="delivery-features">
+            <div class="delivery-feature">
+                <span>📦</span>
+                <span>Secure Packaging</span>
+            </div>
+            <div class="delivery-feature">
+                <span>⚡</span>
+                <span>3-7 Days Delivery</span>
+            </div>
+            <div class="delivery-feature">
+                <span>🆓</span>
+                <span>Free Shipping above ₹799</span>
+            </div>
+            <div class="delivery-feature">
+                <span>📍</span>
+                <span>Live Order Tracking</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq-section" id="faq">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about our pickles</p>
+    </div>
+    <div class="faq-container">
+        <div class="faq-item" data-aos="fade-up">
+            <button class="faq-question">
+                Are your pickles really preservative-free?
+                <span>+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Yes! We do not add any chemical preservatives. Our pickles use natural preservation methods like mustard oil, salt, and traditional sun-drying techniques that have been used for generations.</p>
+            </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="50">
+            <button class="faq-question">
+                Do I need to refrigerate the pickle?
+                <span>+</span>
+            </button>
+            <div class="faq-answer">
+                <p>No refrigeration is needed! Our pickles are prepared using traditional methods that allow them to stay fresh at room temperature for months. Just keep them in a cool, dry place.</p>
+            </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+            <button class="faq-question">
+                Is the meat used 100% halal?
+                <span>+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Absolutely. We source only 100% halal-certified meat for all our non-vegetarian pickle products. This is a core promise we make to our customers.</p>
+            </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="150">
+            <button class="faq-question">
+                How long does delivery take?
+                <span>+</span>
+            </button>
+            <div class="faq-answer">
+                <p>We deliver across India within 3-7 business days depending on your location. Metro cities usually receive orders within 3-4 days.</p>
+            </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+            <button class="faq-question">
+                What is the shelf life of your pickles?
+                <span>+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Our pickles have a shelf life of 6-12 months when stored properly in a cool, dry place. Always use a clean, dry spoon to maintain freshness.</p>
+            </div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="250">
+            <button class="faq-question">
+                How can I place an order?
+                <span>+</span>
+            </button>
+            <div class="faq-answer">
+                <p>You can order directly through our website by adding items to cart, or simply DM us on Instagram @sonyspickle or message us on WhatsApp. We'll take care of the rest!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Instagram -->
+<section class="section instagram-section" id="contact">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-label">Follow Us</span>
+        <h2 class="section-title">@sonyspickle on Instagram</h2>
+        <p class="section-subtitle">Join our community of pickle lovers</p>
+    </div>
+    <div class="instagram-grid" data-aos="fade-up">
+        <a href="https://instagram.com/sonyspickle" target="_blank" class="insta-item">
+            <img src="https://images.pexels.com/photos/1893555/pexels-photo-1893555.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Instagram post">
+        </a>
+        <a href="https://instagram.com/sonyspickle" target="_blank" class="insta-item">
+            <img src="https://images.pexels.com/photos/315754/pexels-photo-315754.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Instagram post">
+        </a>
+        <a href="https://instagram.com/sonyspickle" target="_blank" class="insta-item">
+            <img src="https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Instagram post">
+        </a>
+        <a href="https://instagram.com/sonyspickle" target="_blank" class="insta-item">
+            <img src="https://images.pexels.com/photos/109273/pexels-photo-109273.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Instagram post">
+        </a>
+        <a href="https://instagram.com/sonyspickle" target="_blank" class="insta-item">
+            <img src="https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Instagram post">
+        </a>
+        <a href="https://instagram.com/sonyspickle" target="_blank" class="insta-item">
+            <img src="https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Instagram post">
+        </a>
+    </div>
+    <div class="insta-cta" data-aos="fade-up">
+        <a href="https://instagram.com/sonyspickle" target="_blank">📸 Follow @sonyspickle</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="logo-text">Sony's Pickle ❤️</div>
+            <p>Authentic homemade pickles crafted with love, traditional recipes, and the finest ingredients. Delivered fresh across India.</p>
+            <div class="footer-social">
+                <a href="https://instagram.com/sonyspickle" target="_blank" aria-label="Instagram">📸</a>
+                <a href="https://wa.me/919999999999" target="_blank" aria-label="WhatsApp">💬</a>
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="YouTube">🎬</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#story">Our Story</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer-col">
+            <h4>Policies</h4>
+            <a href="#">Shipping Policy</a>
+            <a href="#">Return & Refund</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="#">📧 sonyspickle@gmail.com</a>
+            <a href="#">📱 +91 99999 99999</a>
+            <a href="#">📍 India</a>
+            <a href="https://instagram.com/sonyspickle" target="_blank">📸 @sonyspickle</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Sony's Pickle. All rights reserved. Made with ❤️</p>
+        <p>100% Halal | No Chemical Preservatives | All-India Delivery</p>
+    </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/919999999999?text=Hi%20Sony's%20Pickle%2C%20I%20want%20to%20place%20an%20order" class="whatsapp-btn" target="_blank" aria-label="Order on WhatsApp">💬</a>
+
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<!-- Cart Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>🛒 Your Cart</h3>
+        <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <div class="cart-empty">
+            <span>🫙</span>
+            <p>Your cart is empty</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">Add some delicious pickles!</p>
+        </div>
+    </div>
+    <div class="cart-footer">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cartTotal">₹0</span>
+        </div>
+        <button class="cart-checkout" id="checkoutBtn">Order on WhatsApp 💬</button>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+    <span>✓</span>
+    <span id="toastMsg">Added to cart!</span>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 50
+    });
+
+    // Preloader
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('preloader').classList.add('hidden');
+        }, 1500);
+    });
+
+    // Header scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        const scrollTopBtn = document.getElementById('scrollTop');
+        if (window.scrollY > 500) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+    });
+
+    // Scroll to top
+    document.getElementById('scrollTop').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Mobile menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+    const mobileNavClose = document.getElementById('mobileNavClose');
+
+    function openMobileNav() {
+        mobileNav.classList.add('active');
+        mobileNavOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+        mobileNav.classList.remove('active');
+        mobileNavOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobileNav);
+    mobileNavClose.addEventListener('click', closeMobileNav);
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
+    });
+
+    // Cart functionality
+    let cart = [];
+
+    const cartBtn = document.getElementById('cartBtn');
+    const cartSidebar = document.getElementById('cartSidebar');
+    const cartOverlay = document.getElementById('cartOverlay');
+    const cartClose = document.getElementById('cartClose');
+    const cartItemsEl = document.getElementById('cartItems');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartTotalEl = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    function openCart() {
+        cartSidebar.classList.add('active');
+        cartOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCart() {
+        cartSidebar.classList.remove('active');
+        cartOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    cartBtn.addEventListener('click', openCart);
+    cartClose.addEventListener('click', closeCart);
+    cartOverlay.addEventListener('click', closeCart);
+
+    function addToCart(name, price, img) {
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+            existing.qty++;
+        } else {
+            cart.push({ name, price, img, qty: 1 });
+        }
+        updateCart();
+        showToast(`${name} added to cart!`);
+
+        cartCountEl.classList.add('bump');
+        setTimeout(() => cartCountEl.classList.remove('bump'), 300);
+    }
+
+    function changeQty(index, delta) {
+        cart[index].qty += delta;
+        if (cart[index].qty <= 0) {
+            cart.splice(index, 1);
+        }
+        updateCart();
+    }
+
+    function updateCart() {
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+        cartCountEl.textContent = totalItems;
+        cartTotalEl.textContent = `₹${totalPrice}`;
+
+        if (cart.length === 0) {
+            cartItemsEl.innerHTML = `
+                <div class="cart-empty">
+                    <span>🫙</span>
+                    <p>Your cart is empty</p>
+                    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Add some delicious pickles!</p>
+                </div>
+            `;
+        } else {
+            cartItemsEl.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-image"><img src="${item.img}" alt="${item.name}"></div>
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price * item.qty}</p>
+                    </div>
+                    <div class="cart-item-qty">
+                        <button onclick="changeQty(${index}, -1)">−</button>
+                        <span>${item.qty}</span>
+                        <button onclick="changeQty(${index}, 1)">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
+
+    // Checkout via WhatsApp
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) return;
+
+        let message = "Hi Sony's Pickle! I'd like to order:\n\n";
+        cart.forEach(item => {
+            message += `• ${item.name} x${item.qty} — ₹${item.price * item.qty}\n`;
+        });
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        message += `\nTotal: ₹${total}\n\nPlease confirm my order! 🙏`;
+
+        const encoded = encodeURIComponent(message);
+        window.open(`https://wa.me/919999999999?text=${encoded}`, '_blank');
+    });
+
+    // Toast notification
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Parallax effect
+    window.addEventListener('mousemove', (e) => {
+        const floatItems = document.querySelectorAll('.float-item');
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+        floatItems.forEach((item, i) => {
+            const speed = (i + 1) * 0.5;
+            item.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+        });
+    });
+</script>
+</body>
+</html>
