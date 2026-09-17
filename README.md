@@ -4,7 +4,7 @@ Authentic pickles, made with love. A single-page static website for Sony's Pickl
 
 ## Live Site
 
-Deploying...
+https://sonys-pickle.vercel.app
 
 ## Tech
 
